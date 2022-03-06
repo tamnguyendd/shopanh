@@ -2,7 +2,6 @@
 /vendor
 .env.backup
 .env.example
-.env
 ecommerce1001.sql
 .phpunit.result.cache
 docker-compose.override.yml
