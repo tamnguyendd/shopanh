@@ -1,0 +1,56 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.1.4",
+    "axios": "^0.21",
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.6",
+    "laravel-mix": "^6.0.25",
+    "lodash": "^4.17.19",
+    "popper.js": "^1.16.1",
+    "postcss": "^8.1.14",
+    "resolve-url-loader": "^3.1.2",
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1",
+    "vue": "^3.1.4",
+    "vue-loader": "^16.2.0",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "pc-bootstrap4-datetimepicker": "^4.17.51",
+    "query-string": "^0.2.0",
+    "querystring": "^0.2.0",
+    "resolve-url": "^0.2.1",
+    "select2": "^4.0",
+    "urix": "^0.1.0",
+    "uuid": "^7.0.3",
+    "vue-sweetalert2": "^5.0.2"
+  },
+  "name": "ecommerce-application",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C190342/ecommerce-application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C190342/ecommerce-application/issues"
+  },
+  "homepage": "https://github.com/C190342/ecommerce-application#readme"
+}

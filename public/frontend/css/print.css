@@ -1,0 +1,17 @@
+@media print{
+    .print-position {
+        position: relative !important;
+        display: block;
+    }
+    .print-right {
+        width: auto;
+        float: right !important;
+    }
+    .print-left {
+        width: auto;
+        float: left !important;
+    }
+    .hidden-print {
+        display: none !important;
+    }
+}

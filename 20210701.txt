@@ -1,0 +1,1299 @@
+- VSCode、XAMPP、Composerインストール
+- ComposerでLaravelをインストールし、Example Projectを作成
+
+
+composer global require laravel/installer
+
+laravel new example-app
+
+cd example-app
+
+php artisan serve
+
+create branch v2
+=============================
+-- exampleという名前でプロジェクトを作成
+C:\xampp\htdocs>composer create-project laravel/laravel example
+
+-- exampleプロジェクトに侵入
+C:\xampp\htdocs>cd example
+
+-- Serverを実行し 
+C:\xampp\htdocs\example>php artisan serve
+-- Starting Laravel development server: http://127.0.0.1:8000 -> このリンクでLaravel example を実行できます。
+
+-- Create HelloController controller
+C:\xampp\htdocs\example> php artisan make:controller HelloController
+
+-- Create CheckAge middleware
+C:\xampp\htdocs\example> php artisan make:middleware CheckAge
+
+-- Cài đặt gói Laravel HTML package
+C:\xampp\htdocs\example> composer require LaravelCollective/html
+
+-- Cài đặt gói Patricktalmadge/Bootstrapper hỗ trợ viết mã nhanh
+c:\xampp\htdocs\example> composer require patricktalmadge/bootstrapper
+
+
+c:\xampp\htdocs\example> php artisan make:controller ProductController --resource
+
+=============================
+
+早速習って、VSCodeのSettings->Extensions->intelephenseから、設定の下記の５項目のチェックを「外す」。
+
+intelephense.diagnostics.undefinedClassConstants
+intelephense.diagnostics.undefinedConstants
+intelephense.diagnostics.undefinedFunctions
+intelephense.diagnostics.undefinedMethods
+intelephense.diagnostics.undefinedProperties
+intelephense.diagnostics.undefinedTypes
+
+=============================
+
+// Routing
+-- routes/web.php
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+-- http://localhost/greeting
+
+Route::redirect('/here', '/there');
+
+
+20210705
+
+
+
+- VSCode、XAMPP、Composerインストール
+- ComposerでLaravelをインストールし、Example Projectを作成
+
+=============================
+-- bookstoreという名前でプロジェクトを作成
+C:\xampp\htdocs>composer create-project laravel/laravel bookstore
+
+-- bookstoreプロジェクトに侵入
+C:\xampp\htdocs>cd bookstore
+
+-- ui install
+C:\xampp\htdocs\bookstore>composer require laravel/ui
+
+-- Auth install
+C:\xampp\htdocs\bookstore> php artisan ui vue --auth
+
+-- Serverを実行し 
+C:\xampp\htdocs\bookstore> php artisan serve
+-- Starting Laravel development server: http://127.0.0.1:8000 -> このリンクでLaravel example を実行できます。
+
+-- Cài đặt gói Laravel HTML package
+C:\xampp\htdocs\bookstore> composer require LaravelCollective/html
+
+-- Cài đặt gói Patricktalmadge/Bootstrapper hỗ trợ viết mã nhanh
+c:\xampp\htdocs\bookstore> composer require patricktalmadge/bootstrapper
+
+-- config/app.php -- タイムゾーン、言語を日本にする
+'timezone' => 'Asia/Tokyo',
+'locale' => 'ja',
+
+-- config/database.php -- DBの文字コードをutf8にする
+'charset' => 'utf8',
+'collation' => 'utf8_unicode_ci',
+
+-- デバッグバーの使用 -- 簡易サーバーを立ち上げると下部にデバッグ情報が表示されるようになります。
+terminal
+composer require barryvdh/laravel-debugbar
+
+-- .env 非表示 -- 本番環境など表示したくない環境では下記のように値を変更します。
+APP_DEBUG=false
+
+-- Laravel-ui、認証
+terminal
+//バージョン指定しない場合
+composer require laravel/ui --dev
+
+//バージョン指定する場合
+composer require laravel/ui:^1.0 --dev
+
+-- スカフォールド生成 https://viblo.asia/p/su-dung-scaffold-cua-frontend-trong-laravel-6-jvElarv45kw
+//ユーザー認証不要時
+php artisan ui bootstrap
+php artisan ui vue
+php artisan ui react
+
+//ユーザー認証
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
+
+
+// migration
+terminal
+php artisan migrate
+
+-- resources\lang\ja\validation.php エラーメッセージの日本語化
+'attributes' => ['email'=>'メールアドレス',
+	'name'=>'名前'
+	],
+https://qiita.com/takeshisakuma/items/44055d362e2f3e8da3d9
+
+
+==============================
+
+// Auth::routes();
+// vendor/laravel/framework/src/Illuminate/Routing/Router.php
+
+public function auth()
+{
+    // Authentication Routes...
+    $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    $this->post('login', 'Auth\LoginController@login');
+    $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // Registration Routes...
+    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'Auth\RegisterController@register');
+
+    // Password Reset Routes...
+    $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+}
+
+// SQL
+-- create Person model and migration
+C:\xampp\htdocs\bookstore> php artisan make:model Person --migration
+-- bookstore/database/migrations/2021_07_05_011851_create_people_table.php
+-- chinh su du lieu trong file tren
+
+-- connect MySQL
+C:\xampp\htdocs\bookstore> mysql -u root -p;
+
+-- create bookstore database
+MariaDB [(none)]> CREATE DATABASE bookstore CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+// .envのDB接続の部分を、先ほど作成したDBに合わせます。
+// config/database.php change
+// Faker de test https://qiita.com/sutara79/items/e19fb386451ab9a4a5fa
+
+=========================
+// cach tao migration rieng:
+C:\xampp\htdocs\bookstore> php artisan make:migration create_Admin_table
+
+// cach run migration rieng:
+C:\xampp\htdocs\bookstore> php artisan migrate --path=/database/migrations/2021_07_05_155849_create_admin_table.php
+
+// Rolling Back Migrations
+-- Rollback The Last Migration Operation
+C:\xampp\htdocs\bookstore> php artisan migrate:rollback
+-- Rollback all migrations
+C:\xampp\htdocs\bookstore> php artisan migrate:reset
+-- Rollback all migrations and run them all again
+C:\xampp\htdocs\bookstore> php artisan migrate:refresh
+-- Rollback all migrations and run them all again with seeder
+C:\xampp\htdocs\bookstore> php artisan migrate:refresh --seed
+
+-- run a seeder which have created in database
+C:\xampp\htdocs\bookstore> php artisan db:seed --class=AttributesTableSeeder
+
+-- dung migration de tao table trong mySQL bookstore database
+C:\xampp\htdocs\bookstore> php artisan migrate
+
+======================== artisan
+https://readouble.com/laravel/8.x/ja/eloquent.html
+
+# モデルの生成時にデータベースマイグレーションも生成
+php artisan make:model Flight --migration
+
+# モデルとFlightFactoryクラスを生成
+php artisan make:model Flight --factory
+php artisan make:model Flight -f
+
+# モデルとFlightSeederクラスを生成
+php artisan make:model Flight --seed
+php artisan make:model Flight -s
+
+# モデルとFlightControllerクラスを生成
+php artisan make:model Flight --controller
+php artisan make:model Flight -c
+
+# モデルとマイグレーション、ファクトリ、シーダ、およびコントローラを生成
+php artisan make:model Flight -mfsc
+
+# モデルとマイグレーション、ファクトリ、シーダ、およびコントローラを生成する短縮形
+php artisan make:model Flight --all
+
+# ピボットモデルを生成
+php artisan make:model Member --pivot
+
+
+======================== change code
+app/Person.php
+config/auth.php 
+app/Http/Controllers/Auth/RegisterController.php
+app\Providers\RouteServiceProvider.php -- // protected $namespace = 'App\\Http\\Controllers';
+
+app\Providers\RouteServiceProvider.php -- thay doi link HOME = '/admin/home';
+
+vendor\laravel\ui\auth-backend\AuthenticatesUsers.php -- thay doi logout action redirect Auth 
+
+// neu dng Git de quan ly thi file .gitignore se bi xoa nen khong the join toi duoc,
+// luc do phai tu khai bao route trong web.php
+web.php
+Auth::routes();
+public function auth()
+vendor/laravel/ui/src/AuthRouteMethods.php
+
+https://qiita.com/nakaji0210/items/036877bf6fe71f5cf9ef
+
+============================
+https://allaravel.com/blog/laravel-eloquent-orm-phan-1-thao-tac-voi-database-qua-eloquent-model
+
+-- Tạo Model
+php artisan make:model Product
+
+-- Tạo Model cùng với file migrate
+php artisan make:model Product --migration
+php artisan make:model Product -m
+
+-- 1 Ngầm định tên bảng + 2 Ngầm định khóa chính
+// thay doi ngam dinh ten cua Model voi table trong SQL
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    // Thay đổi các thiết lập ngầm định của Eloquent Model
+    protected $table = 'my_products';
+    public $primaryKey = 'product_code'; // ngầm định tên id là khóa chính (primary key), khong phai thi phai set lai
+    public $incrementing = false; // không tăng tự động
+
+-- 3 Log thời gian tương tác bản ghi dữ liệu
+Eloquent Model yêu cầu các bảng trong CSDL phải có các trường created_at và updated_at
+nếu bạn không muốn tính năng này, thiết lập thuộc tính $timestamps thành false.
+public $timestamps = false;
+
+
+-- 5.1 Insert dữ liệu
+
+-- Tạo một bảng ghi dữ liệu
+// Su dung Laravel Eloquent 
+<?php
+use App\Product;
+$product          = new Product;
+$product->name    = $request->input('name');
+$product->price   = $request->input('price');
+$product->content = $request->input('content');
+$product->active  = $request->has('active')? 1 : 0;
+$product->save();
+
+// su dung Query Builder
+// Code trích dẫn trong phương thức store của ProductController trong ví dụ Query Builder
+$active = $request->has('active')? 1 : 0;
+    $product_id = DB::table('products')->insertGetId([
+        'name'       => $request->input('name'),
+        'price'      => $request->input('price'),
+        'content'    => $request->input('content'),
+        'image_path' => $request->input('image_path'),
+        'active'     => $active,
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now()
+        ]);
+
+--  Model Mass Assignment
+Mass Assignment xuất phát từ ngôn ngữ Ruby on Rails, 
+là tính năng cho phép lập trình một cách tự động gán các tham số của một HTTP request vào các biến hoặc đối tượng 
+trong lập trình. Ví dụ: chúng ta có một form đăng ký người dùng như sau, 
+các tên trường nhập liệu trùng với tên cột trong bảng users trong CSDL.
+
+<form>
+    <input name='username' type='text'>
+    <input name='password' type='text'>
+    <input name='email' type='text'>
+    <input type=submit>
+</form>
+
+Khi đó form này POST dữ liệu lên chúng ta có thể ghi dữ liệu này vào CSDL bằng đoạn code sau:
+
+$user = new User(Input::all());
+
+Tuy nhiên, có một lỗ hổng bảo mật xảy ra, nếu một kẻ xấu gửi thêm dữ liệu user_type = 'admin', 
+khi đó user mới được tạo sẽ có quyền admin, việc gắn thêm dữ liệu gửi lên server là rất đơn giản 
+có thể thực hiện bằng các công cụ có sẵn trên trình duyệt như Chrome Developer Tools... 
+
+cach 1: thông qua fillable.
+
+class User extends Model
+{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'password', 'email'];
+}
+
+khi đó ta có thể thực hiện:
+
+$user = User::create(Input::all());
+// Hoặc
+$user = new User(Input::al());
+
+cach 2: thông qua thuộc tính $guarded.
+Chú ý, không khai báo cả hai thuộc tính này đồng thời.
+Chú ý: một vấn đề nữa là fillablevàguarded chỉ có tác dụng với các phương thức của Eloquent Model
+
+// Phương thức Eloquent 
+$user = User::find($id);
+$user->update(Input::all());
+
+// Phương thức Query Builder
+User::where('id', $id)->update(Input::all());
+
+-- 3 Một số phương thức tạo bản ghi khác
+// Tìm user trong CSDL nếu không có thì insert bản ghi
+$user = User::firstOrCreate(Input::all());
+
+// Tìm user trong CSDL nếu không có thì trả về một instance của User và chỉ ghi xuống CSDL khi gọi phương thức save()
+$user = User::firstOrCreate(Input::all());
+$user->save();
+
+---- 2 Truy vấn dữ liệu bằng Model
+Để lấy tất cả các record trong table mà Model thể hiện tương ứng sử dụng phương thức all():
+$products = Product::all();
+foreach ($products as $p) {
+    echo 'Sản phẩm: ' . $p->name . ' có giá ' . number_format($p->price) . 'VNĐ' ;
+}
+
+// Chúng ta có thể thêm các điều kiện vào truy vấn:
+$products = Product::where('active', '=', 1)
+        ->where('price', '>', '350000')
+        ->orderBy('name')
+        ->take(10)
+        ->get();
+
+foreach ($products as $p) {
+    echo 'Sản phẩm: ' . $p->name . ' có giá ' . number_format($p->price) . 'VNĐ' ;
+}
+
+
+// Eloquent Model:
+
+use App\Product;
+// tìm một sản phẩm khi biết id của sản phẩm 
+$product = Product::find($product_id);
+echo 'Sản phẩm: ' . $product->name . ' có ID là ' . $product_id;
+
+// lấy một sản phẩm bất kỳ có giá 300k
+$product_300k = Product::where('price', '>', 300000)->first();
+echo 'Sản phẩm: ' . $product->name . ' có giá ' . $product->price . ' VNĐ';
+
+// Số lượng sản phẩm đang đăng bán (có trạng thái active = 1)
+$product_cnt = Product::where('active', '=', 1)->count();
+
+// Giá sản phẩm rẻ nhất đang đăng bán
+$min_price = Product::where('active', '=', 1)->min('price');
+
+
+------- 3 Cập nhật dữ liệu
+
+use App\Product;
+
+$product_id     = 5;
+$product        = Product::find($product_id);
+$product->name  = 'New product name';
+$product->price = 500000;
+$product->save();
+
+// tất cả các sản phẩm TENDA hiện đang hết hàng và chúng ta muốn chuyển chúng sang chế độ không đăng bán active = 0:
+Product::where('active', 1)
+          ->where('name', 'like', '%TENDA%')
+          ->update(['active' => 0]);
+
+
+ ---- 4 Xóa bản ghi dữ liệu
+
+$product = Product::find(1);
+$product->delete();
+
+// Xóa tất cả các sản phẩm đang không active.
+$deletedProducts = Product::where('active', 0)->delete();
+
+-- Xử lý bản ghi đã xóa
+ thực hiện được đánh dấu bản ghi đã xóa, chúng ta sử dụng trait Illuminate\Database\Eloquent\SoftDeletes 
+và thêm deleted_at vào thuộc tính $dates của nó:
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+class Product extends Model
+{
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+}
+
+kiểm tra xem một thực thể của Model là được xóa mềm hay không bằng phương thức trashed()
+if ($product->trashed()) {
+    // Sản phẩm này đã được đánh dấu là đã xóa
+}
+
+-- 2 Truy vấn các bản ghi được xóa "mềm"
+
+// chúng ta sử dụng phương thức withTrashed(): Các bản ghi được đánh dấu là đã xóa, va hien dang co:
+$comments = Comment::withTrashed()
+                ->where('user_id', 1)
+                ->get();
+// Ngược lại nếu muốn chỉ truy vấn các kết quả trong các record đã được xóa mềm, sử dụng phương thức onlyTrashed():
+$comments = Comment::onlyTrashed()
+                ->where('user_id', 1)
+                ->get();
+
+-- 3 Khôi phục các bản ghi đã xóa "mềm"
+
+// Khôi phục một bản ghi đã xóa "mềm"
+$comment->restore();
+
+// Khôi phục nhiều bản ghi đã xóa "mềm" thông qua truy vấn
+Comment::onlyTrashed()->where('user_type', '=', 'admin')->restore();
+
+-- 4 Xóa vĩnh viễn bản ghi
+
+// Xóa cứng một bản ghi
+$comment->forceDelete();
+
+
+---- scope 
+
+https://allaravel.com/blog/laravel-eloquent-orm-phan-1-thao-tac-voi-database-qua-eloquent-model
+
+Model user 
+    /**
+     * Phạm vi truy vấn là các User đã bình chọn lớn hơn 100
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePopular($query)
+    {
+        return $query->where('votes', '>', 100);
+    }
+
+// Chú ý các Scope phạm vi cục bộ được định nghĩa bởi các hàm trong Model với tên bắt đầu bằng scope 
+// (scopePopular, scopeActive...). Khi đó bạn có thể sử dụng các Scope đã được định nghĩa này trong các truy vấn như sau:
+
+// Lấy tất cả các user có lượng bình chọn lớn hơn 100 và đang hoạt động.
+$users = User::popular()->active()->orderBy('created_at')->get();
+
+--- 3 Phạm vi truy vấn động
+Model user 
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
+// Sau đó, chúng ta có thể truyền tham số khi gọi các Scope này:
+$users = App\User::ofType('admin')->get(); // type = admin
+
+======================== Laravel Event
+
+https://allaravel.com/blog/quan-ly-su-kien-trong-ung-dung-voi-laravel-event/
+
+https://allaravel.com/blog/laravel-eloquent-orm-phan-2-xu-ly-database-relationship
+
+https://allaravel.com/blog/laravel-eloquent-orm-phan-3-xu-ly-du-lieu-dau-ra
+
+
+=========================== MVC
+https://tech.arms-soft.co.jp/entry/2020/05/27/090000
+Controller:
+
+app
+｜
+｜- Http
+ 　　｜- Controllers
+ 　　    ｜- Admin                                 // 管理者ユーザ用のController
+ 　　        ｜- Auth
+ 　　     　　    ｜- LoginController.php
+ 　　     　　    ｜- RegisterController.php        // 登録（コピーして作成）
+ 　　        ｜- HomeController.php
+ 　　    ｜
+ 　　    ｜- Auth                                  // 一般ユーザ用のController
+ 　　        ｜- LoginController.php
+ 　　     　 ｜- RegisterController.php            // 登録
+  　　   ｜- HomeController.php　　 
+
+View:
+
+resource
+ 　　｜- views
+  　　　　｜
+ 　　 　　｜- admin                                   // 管理者ユーザ用のview
+ 　　 　 　　　｜- auth
+ 　 　　　  　　   ｜- login.blade.php
+ 　　  　　    　　｜- register.blade.php             // 登録（コピーして作成）
+ 　　 　　 　　｜- home.blade.php
+ 　　 　　｜
+ 　　 　　｜- layouts
+ 　 　　 　　　｜- admin
+ 　　  　　 　　   ｜- app.blade.php
+ 　　 　　 　　｜- user
+ 　　    　　 　　 ｜- app.blade.php
+ 　　 　　｜- user                                   // 一般ユーザ用のview
+ 　 　　 　　　｜-auth
+ 　　  　　 　　   ｜- login.blade.php
+ 　　     　　 　　｜- register.blade.php             // 登録
+ 　　 　　 　　｜- home.blade.php
+
+
+
+一般ユーザ用　app\Http\Controllers\Auth\RegisterController.php
+
+管理者ユーザ用　app\Http\Controllers\Admin\Auth\RegisterController.php
+
+registerのルーティングを追加 routes/web.php
+
+-- View内のパスを合わせる
+管理者用　resources/views/admin/auth/register.blade.php
+一般  resources/views/user/auth/register.blade.php
+
+-- パスワードリセットに必要なControllerとViewである
+
+ForgotPasswordController.php
+ResetPasswordController.php
+email.blade.php
+reset.blade.php
+
+app
+｜
+｜- Http
+ 　　｜- Controllers
+ 　　    ｜- Admin                                    // 管理者ユーザ用のController
+ 　　        ｜- Auth
+ 　　     　　    ｜- LoginController.php
+ 　　     　　    ｜- RegisterController.php
+ 　　     　　    ｜- ForgotPasswordController.php     // パスワード再設定メール送信（コピーして作成）
+ 　　     　　    ｜- ResetPasswordController.php      // パスワード再設定（コピーして作成）
+ 　　        ｜- HomeController.php
+ 　　    ｜
+ 　　    ｜- Auth                                    // 一般ユーザ用のController
+ 　　         ｜- LoginController.php
+ 　　     　　｜- RegisterController.php
+ 　　     　　｜- ForgotPasswordController.php        // パスワード再設定メール送信
+ 　　     　　｜- ResetPasswordController.php          // パスワード再設定
+  　　   ｜- HomeController.php　　     　　    
+
+
+resource
+ 　　｜- views
+  　　　　｜
+ 　　 　　｜- admin                           // 管理者ユーザ用のview
+ 　　 　 　　　｜- auth
+ 　 　　　  　　   ｜- login.blade.php
+ 　　  　　    　　｜- register.blade.php
+ 　　  　　 　　   ｜- passwords
+ 　　  　　 　　   　   ｜- email.blade.php    // パスワード再設定メール送信（コピーして作成）
+ 　　  　　 　　   　   ｜- reset.blade.php    // パスワード再設定（コピーして作成）
+ 　　 　　 　　｜- home.blade.php
+ 　　 　　｜
+ 　　 　　｜- layouts
+ 　 　　 　　　｜- admin
+ 　　  　　 　　   ｜- app.blade.php
+ 　　 　　 　　｜- user
+ 　　    　　 　　 ｜- app.blade.php
+ 　　 　　｜- user                            // 一般ユーザ用のview
+ 　 　　 　　　｜-auth
+ 　　  　　 　　   ｜- login.blade.php
+ 　　     　　 　　｜- register.blade.php
+ 　　  　　 　　   ｜- passwords
+ 　　  　　 　　   　   ｜- email.blade.php    // パスワード再設定メール送信
+ 　　  　　 　　   　   ｜- reset.blade.php    // パスワード再設定
+ 　　 　　 　　｜- home.blade.php
+
+
+（2）メールの設定を定義する
+// https://mailtrap.io/ acc login:
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=9930972dc826d8
+MAIL_PASSWORD=9e4d8741f97abe
+MAIL_ENCRYPTION=tls
+
+config/mail.phpや.envファイルでメールサーバの情報を定義しておきます。
+
+（3）管理者用のパスワードリセットトークン保存用テーブルの追加作成
+
+
+
+（4）管理者用のパスワードブローカーの定義
+
+（5）ForgotPasswordControllerの準備
+
+一般ユーザ用　app\Http\Controllers\Auth\ForgotPasswordController.php
+管理者ユーザ用　app\Http\Controllers\Admin\Auth\ ForgotPasswordController.php
+
+（6）ResetPasswordControllerの準備
+一般ユーザ用　app\Http\Controllers\Auth\ResetPasswordController.php
+管理者ユーザ用　app\Http\Controllers\Admin\Auth\ ForgotPasswordController.php
+
+
+guard
+https://readouble.com/laravel/5.5/ja/authentication.html
+
+send email
+https://brightful.jp/blog/programming/laravel-send-mail/
+
+https://tech.arms-soft.co.jp/entry/2020/05/27/090000#2%E3%83%A1%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B
+
+https://readouble.com/laravel/7.x/ja/authentication.html
+
+
+============ send email
+Step 1: Make Configuration
+.env>>
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=mygoogle@gmail.com
+MAIL_PASSWORD=rrnnucvnqlbsl
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=mygoogle@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+Step 2: Create Mail
+php artisan make:mail MyTestMail
+app\Mail\MyTestMail.php>>
+
+Step 3: Create Blade View
+resources/views/emails/myTestMail.blade.php>>
+
+Step 4: Add Route
+routes/web.php>>
+
+
+
+==================
+php artisan make:mail OfferMail --markdown=emails.offerSendMail
+php artisan make:controller MailController
+
+php artisan make:mail Reminder
+
+
+
+=============================
+
+https://www.larashout.com/laravel-ecommerce-application-development-introduction
+
+https://www.larashout.com/laravel-e-commerce-application-development-initial-project-setup
+
+https://www.larashout.com/laravel-e-commerce-application-development-assets-setup-using-laravel-mix
+
+down nvm https://github.com/coreybutler/nvm-windows --  https://github.com/nvm-sh/nvm
+
+https://www.larashout.com/admin-model-migration
+
+app/Providers/AppServiceProvider.php >> -- Schema::defaultStringLength(191);
+
+https://www.larashout.com/backend-admin-authentication
+
+composer require laravel/ui
+
+https://www.larashout.com/base-controller-and-repository
+
+https://www.larashout.com/settings-section-part-1
+
+https://www.larashout.com/settings-section-part-2
+
+// GIT
+-- Pham Thi Anh@PC20212033 MINGW64 /c/xampp/htdocs/ecommerce-application
+git init
+
+git add .
+
+git commit -m "initial commit"
+
+git remote add origin https://github.com/C190342/ecommerce-application.git
+
+git push -u origin master
+
+-- sau khi thay doi
+git add .
+
+git commit -m "first time upload code"
+
+git push origin master
+
+// day code len khi chi co 1 minh lam viec (ko can lay tu server ve, chi day tu local len)
+-- trong thu muc project
+-- khoi tao git
+git init
+
+-- tao branch moi
+git branch master0707
+
+-- ghép nhánh 
+git merge
+
+-- <dang o nhanh master -- doi sang nhanh moi>
+git checkout master0707
+
+-- luu thay doi
+git add .
+
+-- push len server
+git push origin master0707
+==> xong
+
+https://www.thanhlongdev.com/huong-dan-su-dung-git-va-cach-push-project-len-github/
+
+// Trước khi muốn thay đổi source code, điều đầu tiên mà bạn cần phải làm là checkout một nhánh.
+
+-- Để checkout một nhánh, bạn dùng câu lệnh Git sau:
+git checkout <name_branch>
+
+-- Để tạo mới một nhánh và checkout luôn nhánh đó thì bạn dùng câu lệnh:
+git checkout -b <name_branch>
+
+-- Ngoài ra, để quay lại nhánh master:
+git checkout master
+
+
+// Add len local repository
+
+-- Để cập nhật tất cả các file thì ta sử dụng câu lệnh:
+git add .
+
+-- Còn muốn cập một file nào đó thì sử dụng câu lệnh:
+git add .<tên file>
+
+// commit chu thich thay doi
+
+git commit –m "chu thich gi o day"
+
+// Sau câu lệnh Commit, thông tin mới chỉ được cập nhật lên Local Repository. 
+
+-- Nếu bạn muốn cập nhật lên server thì bạn phải sử dụng câu lệnh push:
+git push origin <name_branch>
+
+-- Ngoài ra, nếu chưa tồn tại remote trên server thì bạn cần phải add mới một remote trước rồi mới push:
+git remote add origin <remote_url>
+git push origin <name_branch>
+
+=============================-
+
+https://www.larashout.com/categories-section-part-1
+
+https://www.larashout.com/laravel-e-commerce-application-development-categories-section-part-2
+
+php artisan storage:link
+
+https://www.larashout.com/attributes-section-part-1
+
+https://www.larashout.com/attributes-section-part-2
+
+
+============================== Mysql
+https://proengineer.internous.co.jp/content/columnfeature/6638
+
+-- dang nhap mysql
+C:\Users\Pham Thi Anh>mysql -u root -p
+
+// liet ke danh sach user Mysql
+-- liet ke danh sach
+MariaDB [(none)]> SELECT user, host FROM mysql.user;
+
+-- xoa user pma
+MariaDB [(none)]> DROP USER 'pma'@'localhost';
+
+-- tao user
+MariaDB [(none)]> CREATE USER 'pma'@'localhost';
+
+https://www.larashout.com/attributes-section-part-3
+
+https://www.npmjs.com/package/sass-loader/v/7.3.1
+
+--To begin, you'll need to install sass-loader:
+
+npm install sass-loader node-sass webpack --save-dev
+
+
+==========================
+
+
+npm install laravel-elixir-vue-2 --save-dev
+
+https://www.larashout.com/brands-section
+
+https://www.larashout.com/products-section-part-1
+
+https://www.larashout.com/products-section-part-2
+
+https://www.larashout.com/products-section-part-3
+
+https://www.larashout.com/products-section-part-4
+
+========================== reset link
+cd to your <project_root>/public directory and run 'rmdir storage' - it will remove the link
+
+cd back to project root directory and run 'php artisan storage:link' to link again
+
+==========================
+
+https://www.larashout.com/frontend-login-registration
+
+https://www.larashout.com/categories-navigation
+
+composer require typicms/nestablecollection
+
+https://www.larashout.com/laravel-e-commerce-application-development-catalog-listing
+
+ModelName::with($relation) -> 関係名Controller と　View 結果名
+
+========================
+
+https://www.larashout.com/laravel-e-commerce-application-development-product-details-page
+
+https://www.larashout.com/laravel-e-commerce-application-development-shopping-cart
+
+https://www.larashout.com/laravel-e-commerce-application-development-checkout
+
+========================
+
+https://www.larashout.com/payment-processing
+
+composer install paypal/rest-api-sdk-php
+
+composer require paypal/rest-api-sdk-php
+
+https://www.larashout.com/order-management
+
+======================== Getting a 500 Internal Server Error on Laravel
+
+php artisan key:generate
+
+php artisan cache:clear 
+
+php artisan config:clear
+
+//////////// chinh sua Cart
+\vendor\darryldecode\cart\src\Darryldecode\Cart\Cart.php
+
+https://github.com/darryldecode/laravelshoppingcart#conditions
+
+[
+    {
+        "id":8,
+        "order_number":"ORD-610CD23347328",
+        "user_id":2,
+        "status":"completed",
+        "grand_total":"382000.000000",
+        "item_count":3,
+        "payment_status":1,
+        "payment_method":null,
+        "first_name":"nakamura",
+        "last_name":"mei",
+        "address":"1777\u756a\u57301",
+        "city":"\u718a\u8c37\u5e02",
+        "country":"Japan",
+        "post_code":"360-0025",
+        "phone_number":"0485238855",
+        "notes":"Templates are executed by applying them to a data structure. 
+        Annotations in the template refer to elements of the data structure 
+        (typically a field of a struct or a key in a map) to control execution 
+        and derive values to be displayed. Execution of the template walks the 
+        structure and sets the cursor, represented by a period '.' and called \"dot\", 
+        to the value at the current location in the structure as execution proceeds.",
+        
+        "created_at":"2021-08-06T06:09:55.000000Z",
+        "updated_at":"2021-08-06T06:09:55.000000Z"
+    },
+    {
+        "id":12,
+        "order_number":"ORD-610CD672E488F",
+        "user_id":2,
+        "status":"pending",
+        "grand_total":"108000.000000",
+        "item_count":1,
+        "payment_status":0,
+        "payment_method":null,
+        "first_name":"ikeda",
+        "last_name":"suzuka",
+        "address":"3-3-11-1",
+        "city":"\u4e0a\u5c3e\u5e02",
+        "country":"Japan",
+        "post_code":"362-0015",
+        "phone_number":"0363624983",
+        "notes":"The round() function rounds a floating-point number.
+        \r\n\r\nTip: To round a number UP to the nearest integer, 
+        look at the ceil() function.\r\n\r\nTip: To round a number 
+        DOWN to the nearest integer, look at the floor() function.",
+
+        "created_at":"2021-08-06T06:28:02.000000Z",
+        "updated_at":"2021-08-06T06:28:02.000000Z"
+    }
+]  
+
+// order->items
+[
+    {
+        "id":17,
+        "order_id":12,
+        "product_id":6,
+        "quantity":1,
+        "price":"108000.000000",
+        "created_at":"2021-08-06T06:28:02.000000Z",
+        "updated_at":"2021-08-06T06:28:02.000000Z"
+    }
+] 
+
+// $item->product
+
+{
+    "id":15,
+    "brand_id":7,
+    "sku":"ksdjhsfjd",
+    "name":"product 07",
+    "slug":"product-07",
+    "description":null,
+    "quantity":12,
+    "weight":null,
+    "price":"3300.00",
+    "sale_price":null,
+    "status":false,
+    "featured":false,
+    "created_at":"2021-08-05T06:28:43.000000Z",
+    "updated_at":"2021-08-05T06:28:43.000000Z"
+}  
+
+// 07/30
+
+PHP、Laravel 自習
+
+＊ オンライン販売ウエブサイトの構築・デザイン：
+
+- Bootstrap 4、JavaScriptを利用して、レイアウト・デザインします。
+・BootstrapはHTML／CSS／JavaScriptから構成される最も有名なWEBフレームワークです。
+・WEBページでよく使われるフォーム、ボタン、メニューなどの部品がテンプレートとして用意されています。また、デザイン性も確保されているため、WEBページのスタイルも最低限の調整で済んでしまいます。
+
+- PHP言語、Laravelフレームワーク を使って、バックエンド・フロントエンドを作ります。
+・バックエンド（Backend）：サーバーサイドの処理を指し、一般的にユーザーの目に見えることのないサーバーやデータベース、機能、処理を担うプログラムやモジュールなど、仕組みや機能、部品のことを指します。
+・フロントエンド（Frontend）：ユーザーと直接データのやり取りを行う要素のことで、Web制作ではWebブラウザ側（クライアント側）を指します。
+
+
+* バックエンドの仕組みや機能：
+- 管理アカウントをログインする。
+- ウェブサイトのsettings:
+・Site Name、Site Title、Default Email Address、Telephone　number、...
+・Site Logo、Site Favicon、...
+・Footer & SEO：Footer Copyright Text、SEO Meta Title、...
+・Social Links：Facebook、Twitter、Instagram、...
+・Analytics：Google Analytics、Facebook Pixel、...
+・Payment Settings：Stripe Payment Method、PayPal Payment Method、...
+- 商品の情報：商品のカテゴリー、商品名、商品の属性、...
+- データ処理：追加、更新、削除
+
+// 08/06
+
+PHP、Laravel 自習
+
+＊ オンライン販売ウエブサイトの構築・デザイン：
+* バックエンドの仕組みを続けています：
+商品の情報：商品のメーカー、商品の写真を追加する。
+
+データサンプルを入力し、バックエンドのデザインや機能をテストします。
+
+------
+
+バックエンドでシステムの情報を取れることだからこそ、セキュリティ対策を考えなければなりません。
+LaravelフレームワークにてAuthパッケージを使うのが便利です。
+
+// 08/20
+
+PHP、Laravel 自習
+＊ オンライン販売ウエブサイトの構築・デザイン：
+* フロントエンドの仕組みや機能：
+- ウェブサイトのlayouts:
+・Header:
+    ・ウエブサイトのlogo
+    ・検索バー
+    ・User information
+・Main content:
+    ・ホームページ：新しい商品、セール商品、お勧め商品の情報を表示します。
+    ・商品のカテゴリーページ：カテゴリーの全ての商品を表示します。
+    ・商品の情報ページ：商品の情報を詳細に表示します。
+    ・Cartページ：カゴに入れた商品を表示します。
+    ・オーダーページ：注文した情報：オーダー名、オーダー時間、商品、金額、宛先、支払い方、支払いstatusなど表示します。
+    ・ログオンページ：ユーザーの情報を登録するためです。
+    ・ログインページ：ユーザーの情報を管理するや注文した情報のオーダーページをアクセス可能です。
+    ・ログアウトページ
+・Footer:
+    ・ウエブサイトの情報
+    ・ウエブサイトのcopyright
+
+
+＝ーーー
+バックエンドで入力した商品の情報をフロントエンドに表示します。入力した情報と表示したい情報の関係を考えなければなりません。
+ウエブサイトに不審なアクセスを避けるため、どんな情報かどういう表示の方かも考えなければなりません。
+
+
+＝＝＝＝＝＝＝＝＝＝＝
+
+https://bootstrap-ecommerce.com/templates/alistyle-html/page-components.html
+
+https://bootstrap-ecommerce.com/templates/alistyle-html/page-category.html
+
+https://gwdesk.nisso.co.jp/cgi-bin/dneo/zcreport.cgi?cmd=creportindex&log=on#folder=-2&cmd=creportcmddisppage&id=49256
+
+
+local-scopes
+
+============================
+https://github.com/hardevine/LaravelShoppingcart
+
+
+composer require hardevine/shoppingcart
+
+// Stripe payment
+// https://github.com/cartalyst/stripe-laravel
+
+composer require cartalyst/stripe-laravel
+
+fake address:
+abc Tower, West Sunshine Street
+Asaka-shi
+Saitama-ken
+Japan
+
+4000000000000069  Your card has expired.
+4000000000000127 incorrect cvc
+4000000000000119 processing error: An error occurred while processing your card. Try again in a little bit.
+4000000000000028 Success but address_line1_check": "fail"
+
+4242424242424242	visa	Visa
+4000056655665556	visa_debit	Visa (デビット)
+5555555555554444	mastercard	Mastercard
+5200828282828210	mastercard_debit	Mastercard (デビット)
+5105105105105100	mastercard_prepaid	Mastercard (プリペイド)
+378282246310005	    amex	アメリカン・エキスプレス
+371449635398431	    amex2	アメリカン・エキスプレス
+6011111111111117	discover	ディスカバー
+6011000990139424	discover2	ディスカバー
+3056930009020004	diners	ダイナースクラブ
+36227206271667	    diners_14digits	ダイナースクラブ (14 桁のカード)
+3566002020360505	jcb	JCB
+6200000000000005	unionpay	銀聯  // khong ho tro
+4506445006931933	interac	Interac
+
+php artisan make:request CheckoutRequest
+
+// check stripe test
+https://dashboard.stripe.com/settings/user
+gefort.pham@gmail.com
+
+http://localhost/checkout/payment/complete
+
+// 
+        
+    $pagination = 9;
+    $categories = Category::all();
+
+    if (request()->category) {
+        $products = Product::with('categories')->whereHas('categories', function ($query) {
+            $query->where('slug', request()->category);
+        });
+        $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+    } else {
+        $products = Product::where('featured', true);
+        $categoryName = 'Featured';
+    }
+    
+
+    if (request()->sort == 'low_high') {
+        $products = $products->orderBy('price')->paginate($pagination);
+    } elseif (request()->sort == 'high_low') {
+        $products = $products->orderBy('price', 'desc')->paginate($pagination);
+    } else {
+        $products = $products->paginate($pagination);
+    }
+
+    return view('shop')->with([
+        'products' => $products,
+        'categories' => $categories,
+        'categoryName' => $categoryName,
+    ]);
+
+// 08/27
+
+PHP、Laravel 自習
+
+＊ オンライン販売ウエブサイトの構築・デザイン：
+* フロントエンドの仕組みを続けています
+* フロントエンドのデータ処理：追加、更新、削除
+-------
+買い物かごに商品を入れる処理のためにhardevine/shoppingcartパッケージを利用します。
+Link github: https://github.com/hardevine/LaravelShoppingcart
+- Cart::add() : 買い物かごに商品を入れる処理
+- Cart::update() : 買い物かごに入れた商品の情報を変更する
+- Cart::remove() : 買い物かごに入れた特定の商品だけを削除する
+- Cart::get(): 買い物かごに入れた特定の商品の情報だけを取る
+- Cart::content() : 買い物かごに入れた全ての商品の情報を取る
+- Cart::destroy() : 買い物かごに入れた全ての商品を削除する
+
+
+// 08 30 
+- hoàn thành orders table
+- làm phần tìm kiếm
+
+
+
+// helpers.php
+
+// in app folder , create helpers.php file
+
+// write the helper functions
+<?php
+
+function format_dtime($date,$date_format){
+    if($date != ""){
+        $sec = strtotime($date);  
+        $newdate = date ($date_format, $sec); 
+    }
+    else {
+        $newdate = "";
+    } 
+    return $newdate;
+}
+
+// include it in our composer.json
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "file": [
+            "app/helpers.php"
+        ]
+    },
+
+// regenerate the list of all classes in the app
+composer dump-autoload
+
+That is all, we can now call our function anywhere in our app
+
+
+// create UserSeeder file
+php artisan make:seeder UserSeeder
+
+
+// link san pham
+https://www.lenovo.com/jp/ja/jpad/notebooks/ideapad/slim-5-series/IdeaPad-5-14ARE05/p/82LM007DJP?ef_id=CjwKCAjwybyJBhBwEiwAvz4G7_JukXeCclXvMKGh05LWbM1WTBtoQSAa4qp-HLDYfQ4e8aM_qhsdWhoCJ98QAvD_BwE:G:s&s_kwcid=AL!736!3!494714765034!!!g!370132054019!&&cid=jp:sem:100005_TFSM1Q12YF&gclid=CjwKCAjwybyJBhBwEiwAvz4G7_JukXeCclXvMKGh05LWbM1WTBtoQSAa4qp-HLDYfQ4e8aM_qhsdWhoCJ98QAvD_BwE&gclsrc=aw.ds
+https://www.dell.com/ja-jp/work/shop/%E3%83%87%E3%83%AB%E3%81%AE%E3%83%8E%E3%83%BC%E3%83%88%E3%83%91%E3%82%BD%E3%82%B3%E3%83%B3/new-vostro-3515-%E3%83%99%E3%83%BC%E3%82%B7%E3%83%83%E3%82%AF%E3%83%A2%E3%83%87%E3%83%AB/spd/vostro-15-3515-laptop/cav62603515t04on2ojp?gacd=10024023-13005-6164316-274243751-0&dgc=ST&ds_rl=1288315&ds_rl=1286666&gclid=CjwKCAjwybyJBhBwEiwAvz4G78f9yp0aA7w4hDiQJM-60r8f4VRNxxAb6G8wjiay8VrKrLcjRhtKfBoC0gwQAvD_BwE&gclsrc=aw.ds&nclid=M-Z1ieHWFc_9kqmL2J6HwjZVsyfdSj2fRanPEnIc2vVXtNTS6uvMggcHROy4lOz6
+
+
+
+                                <div class="form-group @error('overview') overview-invalid @enderror">
+                                    <label class="control-label" for="overview">Overview</label>
+                                    <span class="text-danger"> * </span>
+                                    <a href="#" data-toggle="collapse" data-target="#collapse11">
+                                        <i class="icon-control fa fa-caret-down"></i>
+                                    </a>
+                                    <div class="collapse @error('overview') show @enderror" id="collapse11">
+                                        <textarea class="ckeditor form-control" name="overview" id="overview">{{ old('overview', $product->overview) }}</textarea> <!--  name="wysiwyg-editor" -->
+                                    </div> <!-- collapse .// -->
+                                    <div class="invalid-feedback">
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('overview') <span>{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group @error('description') overview-invalid @enderror">
+                                    <label class="control-label" for="description">Description</label>
+                                    <span class="text-danger"> * </span>
+                                    <a href="#" data-toggle="collapse" data-target="#collapse12">
+                                        <i class="icon-control fa fa-caret-down"></i>
+                                    </a>
+                                    <div class="collapse @error('description') show @enderror" id="collapse12">
+                                        <textarea class="ckeditor form-control" name="description" id="description">{{ old('description', $product->description) }}</textarea> <!--  name="wysiwyg-editor" -->
+                                    </div> <!-- collapse .// -->
+                                    <div class="invalid-feedback">
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('description') <span>{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="specification">Specification</label>
+                                    <a href="#" data-toggle="collapse" data-target="#collapse13">
+                                        <i class="icon-control fa fa-caret-down"></i>
+                                    </a>
+                                    <div class="collapse" id="collapse13">
+                                        <textarea class="ckeditor form-control" name="specification" id="specification">{{ old('specification', $product->specification) }}</textarea> <!--  name="wysiwyg-editor" -->
+                                    </div> <!-- collapse .// -->
+                                </div>
+
+
+
+// 09 06
+アノテーションの資料を読む
+Laravel projectのデータを入力する
+
+// 09 07
+Laravel projectのデータを入力する
+画像を分別する
+
+// 09/08
+homepage
+
+Top slide
+https://getbootstrap.com/docs/4.0/components/carousel/
+
+Brand slide 
+https://azmind.com/demo/bootstrap-carousel-multiple-items/
+https://azmind.com/bootstrap-carousel-multiple-items/
+
+
+            <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel1_indicator" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel1_indicator" data-slide-to="1"></li>
+                    <li data-target="#carousel1_indicator" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="https://bootstrap-ecommerce.com/templates/alistyle-html/images/banners/slide1.jpg" alt="First slide"> 
+                    </div>
+                    <div class="carousel-item">
+                    <img src="https://bootstrap-ecommerce.com/templates/alistyle-html/images/banners/slide2.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="https://bootstrap-ecommerce.com/templates/alistyle-html/images/banners/slide3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div> 
+
+
+create slide table : create, edit, delete : image, link, title, show
+create deals table : offer, expired, description
+create deals product table: offer_id, product_id, value
+
+
+// phan mem gan nhan mac Annotations
+https://github.com/tzutalin/labelImg/releases/tag/v1.8.1
+

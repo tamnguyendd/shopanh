@@ -1,0 +1,570 @@
+.dropdown-toggle::after {
+    display: none !important;
+}
+.no-top .nav-link {
+    padding: 0px !important;
+}
+.no-top .dropdown-menu a:hover, .no-top .dropdown-menu a:hover i {color:#ff6a00;-webkit-transition:all 0.3s;transition:all 0.3s}
+.no-top .dropdown-menu {
+    
+    padding: 0;
+    -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 20%);
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 20%);
+    z-index: 20;
+    position: absolute;
+    background: #fff;
+    border: none !important;
+    border-radius: 0% !important;
+}
+.text-wrap {
+    padding-left: 5px !important;
+}
+p.hr, div.hr {
+    
+    border-top: 1px solid #ebecf0 !important;
+    padding-top: 10px !important;
+    margin-top: 10px;
+}
+.primary-style {
+    color: #3344ff;
+}
+.hidden-print {
+    border: none !important;
+    background: none !important;
+}
+.hidden-print:hover i{
+    color: #ff6a00;
+}
+#main_nav .navbar-nav .nav-item {
+    border-bottom:2px solid transparent !important;
+}
+#main_nav .navbar-nav .nav-item a, #main_nav .navbar-nav .nav-item a {
+    font-weight: bold !important;
+}
+#main_nav .navbar-nav .nav-item:hover, #main_nav .navbar-nav .nav-item.active {
+    border-bottom:2px solid #ff6a00 !important;
+}
+#main_nav .navbar-nav .nav-item:hover>a {
+    color: #212529;
+}
+#main_nav .navbar-nav .nav-item.active>a {
+    color: #ff6a00;
+}
+#main_nav .navbar-nav .dropdown a.dropdown-item:hover {
+    color: #ff6a00;
+    background-color: #F2F3F7;
+}
+.breadcrumb-item {
+    font-weight: bold !important;
+}
+.btn-wishlist:hover i {
+    color: red;
+}
+.btn-remove:hover i {
+    color: #ff6a00;
+}
+
+.zoom-div{
+    box-sizing: border-box;
+}
+.zoom-div img {
+    transition: transform .2s;
+}
+.zoom-div img:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+
+/* payment card */
+/**
+* The CSS shown here will not be introduced in the Quickstart guide, but shows
+* how you can use CSS to style your Element's container.
+*/
+.StripeElement {
+    padding: 16px 16px;
+  
+}
+  
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+#card-errors {
+    color: #fa755a;
+}
+
+/* thank you page */
+/*
+*{
+    box-sizing:border-box;
+   /* outline:1px solid ;
+}*/
+
+.thank, .oops {
+    background: #f6f7f9;
+    background: linear-gradient(to bottom, #f6f7f9 0%,#f6f7f9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e8ed',GradientType=0 );
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+  
+.thank .wrapper-1, .oops .wrapper-1 {
+    width:100%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+}
+.thank .wrapper-2, .oops .wrapper-2 {
+    padding :30px;
+    text-align:center;
+}
+.thank h1, .oops h1{
+    font-family: 'Kaushan Script', cursive;
+    font-size:4em;
+    letter-spacing:3px;
+    color:#ff6a00 ;
+    margin:0;
+    margin-bottom:20px;
+}
+.thank h2, .oops h2 {
+    font-family: 'Kaushan Script', cursive;
+    font-size:4em;
+    letter-spacing:3px;
+    color:#ff6a00 ;
+    margin:0;
+    margin-bottom:20px;
+}
+.thank .wrapper-2 p, .oops .wrapper-2 p{
+    margin:0;
+    font-size:1.3em;
+    color:#aaa;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing:1px;
+}
+.thank .go-home, .oops .go-home{
+    color:#fff;
+    background:#ff9817;
+    border:none;
+    padding:10px 30px;
+    margin:30px 0;
+    border-radius:30px;
+    text-transform:capitalize;
+    box-shadow: 0 10px 16px 1px rgba(255, 214, 164, 0.5);
+}
+.thank .go-home:hover, .oops .go-home:hover {
+    background:#f98d06;
+}
+
+.thank .go-detail, .oops .go-detail{
+    color:#fff;
+    background:#5fcbff;
+    border:none;
+    padding:10px 30px;
+    margin:30px 0;
+    border-radius:30px;
+    text-transform:capitalize;
+    box-shadow: 0 10px 16px 1px rgb(164, 234, 255, 0.5);
+}
+.thank .go-detail:hover, .oops .go-detail:hover {
+    background:#31beff;
+}
+
+@media (min-width:360px){
+    .thank h1, .oops h1 {
+        font-size:4.5em;
+    }
+    .thank h2, .oops h2 {
+        font-size:4.5em;
+    }
+    .thank .go-home, .oops .go-home {
+        margin-bottom:20px;
+    }
+    .thank .go-detail, .oops .go-detail {
+        margin-bottom:20px;
+    }
+    .thank .wrapper-1, .oops .wrapper-1 {
+        height: auto;
+    }
+}
+
+@media (min-width:600px){
+    .thank .content, .oops .content {
+        max-width:1000px;
+        margin:0 auto;
+    }
+    .thank .wrapper-1, .oops .wrapper-1 {
+        height: initial;
+        max-width:620px;
+        margin:50px auto;
+        box-shadow: 4px 8px 40px 8px rgba(255, 214, 164, 0.14);
+    }
+    
+}
+
+/* product detail image */
+
+/* Closable button inside the image */
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+      color: #821b1b;
+    background-color: #fed6d6;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #fec6c6;
+    width: 25%; /* Could be more or less, depending on screen size */
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  .modal-content p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+from {top:-300px; opacity:0} 
+to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+from {top:-300px; opacity:0}
+to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close_popup_show {
+color: rgb(236, 73, 73);
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close_popup_show:hover,
+.close_popup_show:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+/*
+    code by Iatek LLC 2018 - CC 2.0 License - Attribution required
+    code customized by Azmind.com
+*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Show 4th slide on md if col-md-4*/
+    .carousel-inner .active.col-md-4.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -33.3333%;  /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+    /* Show 3rd slide on sm if col-sm-6*/
+    .carousel-inner .active.col-sm-6.carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -50%;  /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+}
+@media (min-width: 576px) {
+    .carousel-item {
+        margin-right: 0;
+    }
+    /* show 2 items */
+    .carousel-inner .active + .carousel-item {
+        display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item {
+        transition: none;
+    }
+    .carousel-inner .carousel-item-next {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* farthest right hidden item must be also positioned for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+/* MD */
+@media (min-width: 768px) {
+    /* show 3rd of 3 item slide */
+    .carousel-inner .active + .carousel-item + .carousel-item {
+        display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    .carousel-inner .carousel-item-next {
+        position: relative;
+        transform: translate3d(0, 0, 0);
+    }
+    /* left or forward direction */
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* right or prev direction */
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+/* LG */
+@media (min-width: 991px) {
+    /* show 4th item */
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item {
+        display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    /* Show 5th slide on lg if col-lg-3 */
+    .carousel-inner .active.col-lg-3.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;  /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* left or forward direction */
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* right or prev direction //t - previous slide direction last item animation fix */
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+/* top-slide */
+.top-slider img {
+    width: 100%;
+    height: 375px;
+    object-fit: cover;
+}
+.top-slider .slick-slide {
+    height: auto;
+}
+
+/* sale off  */
+.badge-saleoff-overlay {
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 100;
+    -webkit-transition: width 1s ease, height 1s ease;
+    -moz-transition: width 1s ease, height 1s ease;
+    -o-transition: width 1s ease, height 1s ease;
+    transition: width 0.4s ease, height 0.4s ease
+}
+
+/* ================== badge-saleoff CSS ========================*/
+.badge-saleoff {
+    margin: 0;
+    padding: 0;
+    color: white;
+    padding: 10px 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    line-height: normal;
+    text-transform: uppercase;
+    background: #ed1b24;
+}
+
+.badge-saleoff::before, .badge-saleoff::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    margin: 0 -1px;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    min-width: 55px
+}
+
+.badge-saleoff::before {
+    right: 100%
+}
+
+.badge-saleoff::after {
+    left: 100%
+}
+
+/* ================== Badge Position CSS ========================*/
+.top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -ms-transform: translateX(-30%) translateY(0%) rotate(-45deg);
+    -webkit-transform: translateX(-30%) translateY(0%) rotate(-45deg);
+    transform: translateX(-30%) translateY(0%) rotate(-45deg);
+    -ms-transform-origin: top right;
+    -webkit-transform-origin: top right;
+    transform-origin: top right;
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    -ms-transform: translateX(30%) translateY(0%) rotate(45deg);
+    -webkit-transform: translateX(30%) translateY(0%) rotate(45deg);
+    transform: translateX(30%) translateY(0%) rotate(45deg);
+    -ms-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -ms-transform: translateX(-30%) translateY(0%) rotate(45deg);
+    -webkit-transform: translateX(-30%) translateY(0%) rotate(45deg);
+    transform: translateX(-30%) translateY(0%) rotate(45deg);
+    -ms-transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    -ms-transform: translateX(30%) translateY(0%) rotate(-45deg);
+    -webkit-transform: translateX(30%) translateY(0%) rotate(-45deg);
+    transform: translateX(30%) translateY(0%) rotate(-45deg);
+    -ms-transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
+    transform-origin: bottom left;
+}
+
+.top-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.middle-full {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    -ms-transform: translateX(0%) translateY(-50%) rotate(0deg);
+    -webkit-transform: translateX(0%) translateY(-50%) rotate(0deg);
+    transform: translateX(0%) translateY(-50%) rotate(0deg);
+}
+
+.bottom-full {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* ================== badge-saleoff color CSS ========================*/
+.badge-saleoff.red {
+    background: #ed1b24;
+}
+
+.badge-saleoff.orange {
+    background: #fa7901;
+}
+
+.badge-saleoff.pink {
+    background: #ee2b8b;
+}
+
+.badge-saleoff.blue {
+    background: #00adee;
+}
+
+.badge-saleoff.green {
+    background: #b4bd00;
+}
+
